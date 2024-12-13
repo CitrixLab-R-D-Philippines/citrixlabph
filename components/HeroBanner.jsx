@@ -11,22 +11,28 @@ const HeroBanner = () => {
   
             {/* Background Layer */}
             <div className="background-layer"></div>
+     
           {/* Background Layer */}
           <div
-            className="background-layer"
+            className="background-layer1"
             style={{
               position: 'absolute', // Positioned absolutely to cover the full page
               marginTop: 0,
-              left: '-30px',
-              width: '120%', // Full width
-              height: '47vh', // Full height /workspaces/juhaon/src/assets/mainbg.jpg
-              background: `url({headerImg}) top center no-repeat rgba(243,243,243,1)`,
-              filter: 'progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr="#4cf3f3f3", endColorstr="#4cf3f3f3")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'left',
+              left: '0px',
+              width: '100%', // Full width
+              height: '50vh', // Full height
+              background: 'rgba(243,243,243,1)', // Set a background color
               zIndex: -1, // Ensures it stays behind the body content
             }}
-          ></div>
+          >  
+            <Image
+              src={mainbg}  // Path to the background image
+              alt="Background"  // Image alt text for accessibility
+              layout="fill"  // Ensures the image covers the container fully
+              objectFit="cover"  // Maintains aspect ratio while filling the space
+              objectPosition="center"  // Centers the image within the container
+            />
+          </div>
      
         <div className='header-left-side'>
             <div className='header-content'> 
