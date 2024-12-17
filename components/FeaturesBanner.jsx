@@ -36,7 +36,7 @@ const FeaturesBanner = () => {
         <div className='right'>
           <Image src={img} width={300} height={350} alt='img' />
           <div>
-            <p>This piece is ethically crafted in our small family-owned workshop in Peru with unmatched attention to detail and care. The Natural color is the actual natural color of the fiber, undyed and 100% traceable.</p>
+            <p>Empower your business with CitrixLab's Framework and Cloud-based solutions through expert-led training and tailored IT support.</p>
             <Link href={'/products'}>
               <button className='btn' type='button'>See All Product</button>
             </Link>

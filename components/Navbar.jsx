@@ -1,90 +1,125 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import {CiSearch} from 'react-icons/ci'
-import {CgShoppingCart} from 'react-icons/cg'
-import { CgUser } from 'react-icons/cg'
-import logo from '../src/assets/Logo.png'
-//import Link from 'next/link'
-import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import { useStateContext } from '../context/StateContext';
-
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { CiSearch } from 'react-icons/ci';
+import { CgShoppingCart, CgUser } from 'react-icons/cg';
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useStateContext } from '../context/StateContext';
+import logo from '../src/assets/Logo.png'; 
 
-const Navbar = ({Searchproducts}) => {
-  const {showCart, setShowCart, totalQty} = useStateContext();
+const Navbar = () => {
+  const { showCart, setShowCart, totalQty } = useStateContext();
   const [toggleMenu, setToggleMenu] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState('')
-
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const router = useRouter();
+
   const isActive = (path) => router.pathname === path;
 
+  // Menu items for navigation
+  const menuItems = [
+    { href: '/solutions', label: 'Solutions' },
+    { href: '/platform', label: 'Platform' },
+    { href: '/resources', label: 'Resources' },
+    { href: '/support', label: 'Support' },
+    { href: '/partners', label: 'Partners' },
+  ];
+ 
+
+  // Handle toggle for collapsible nav
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
-    <nav>
-      <Link href='/'>
-        <Image src={logo} width={164} height={65}  alt='logo' />
-      </Link> 
-       
-        <Link href='/solutions'><li className='nav-item'>Solutions</li></Link>
-        <Link href='/platform'><li className='nav-item'>Platform</li></Link>
-        <Link href='/resources'><li className='nav-item'>Resources</li></Link>
-        <Link href='/support'><li className='nav-item'>Support</li></Link> 
-        <Link href='/partners'><li className='nav-item'>Partners</li></Link> 
+    <nav className="navbar">
 
-        <div className='space-bar'> 
-        </div>
+          {/* Logo */}
+          <Link href="/">
+            <Image src={logo} width={164} height={65} alt="logo" />
+          </Link> 
+           
+          {/* Collapsible Navigation Menu */}
+          <div className="nav-container-left">  
 
-        <div className='search-bar'>
-          <CiSearch />
-          <input 
-            type='text' 
-            placeholder='Search here'/>
-        </div>
-        {/* onChange={(event) => {
-              setSearchTerm(event.target.value);
-          }} */}
+              {menuItems.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  <li className={`nav-item ${isActive(item.href) ? 'active' : ''}`}>
+                    {item.label}
+                  </li>
+                </Link>
+              ))}  
+          </div>
+          
+        <div className="nav-container-right">  
 
-      {showCart ?
-      <Link href='/cart'>
-        <button className='cart' onClick={() => setShowCart(false)}>   
-          <CgUser size={22} />
-          <span className='cart-item-qty'>{totalQty}</span> 
-        </button>
-      </Link> 
-      : 
-      <button className='cart' onClick={() => setShowCart(true)}> 
-        <CgUser size={22} />
-        <span className='cart-item-qty'>{totalQty}</span>
-      </button> 
-      }
+            <div className='space-bar'> 
+            </div>
 
-    <Link href='/contact'><li className='nav-item'>&nbsp;Contact Us&nbsp;</li></Link> 
+            {/* Search Bar */}
+            <div className="search-bar">
+              <CiSearch />
+              <input type="text" placeholder="Search here" style={{  maxHeight:'50%'}}/>
+            </div>
 
-      <div className='navbar-smallscreen'>
-        <RiMenu3Line color='black' fontSize={27} onClick={() => setToggleMenu(true)} />
-        {toggleMenu && (
-          <div className='navbar-smallscreen_overlay'>
-            <Link href='/'>
-              <Image className='logo-small' src={logo} width={140} height={140} alt='logo' />
+            {/* Cart Button */}
+            <Link href="/cart">
+              <button className="cart" onClick={() => setShowCart(false)}>
+                <CgUser size={22} />
+                <span className="cart-item-qty">{totalQty}</span>
+              </button>
+            </Link> 
+
+            {/* Contact Us */}
+            <Link href="/contact">
+              <li className="nav-item">Contact Us</li>
             </Link>
-            <RiCloseLine  color='black' fontSize={27} className='close_icon' onClick={() => setToggleMenu(false)} />
-            <ul className='navbar-smallscreen_links'>
-              <Link href='/cart'>
-                  <button className='cart-small-screen' onClick={() => setShowCart(false)}>   
-                    <CgShoppingCart size={22} />
-                    <span className='cart-item-qty'>{totalQty}</span> 
-                  </button>
+        </div>      
+
+      {/* Small Screen Navigation */}
+      <div className="navbar-smallscreen">
+
+        <RiMenu3Line className="menu-icon" color="black" fontSize={27} onClick={() => setToggleMenu(true)} /> 
+          
+        {toggleMenu && (
+          <div className="navbar-smallscreen_overlay" style={{ display: 'flex', flexDirection: 'rows' , gap: '1rem'}}>
+            <Link href="/">
+              <Image className="logo-small" src={logo} width={164} height={65} alt="logo" />
+            </Link>
+            <RiCloseLine
+              color="black"
+              fontSize={27}
+              className="close_icon"
+              onClick={() => setToggleMenu(false)}
+            />  
+
+              {/* Collapsible Navigation Menu */} 
+                  {menuItems.map((item, index) => (
+                    <Link key={index} href={item.href}>
+                      <li className={`nav-item ${isActive(item.href) ? 'active' : ''}`}>
+                        {item.label}
+                      </li>
+                    </Link>
+                  ))}    
+
+              {/* Cart Button */}
+              <Link href="/cart">
+                <button className="cart" onClick={() => setShowCart(false)}>
+                  <CgUser size={22} />
+                  <span className="cart-item-qty">{totalQty}</span>
+                </button>
               </Link> 
-              <Link href='/female'><li>Female</li></Link>
-              <Link href='/male'><li>Male</li></Link>
-              <Link href='/kids'><li>Kids</li></Link>
-              <Link href='/products'><li>All Products</li></Link>
-            </ul>
+
+              {/* Contact Us */}
+              <Link href="/contact">
+                <li className="nav-item">Contact Us</li>
+              </Link>
+
           </div>
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,19 +1,27 @@
-import React from 'react'
-import Image from 'next/image'
+"use client";
+
+import { Footer } from "flowbite-react";
 import logo from '../src/assets/Logo.png'
+import latestnews1 from '../src/assets/latestnews1.webp'
+
+import Link from 'next/link'; 
+import Image from 'next/image'
 import {GrFacebookOption, GrTwitter, GrLinkedinOption} from 'react-icons/gr'
 
-const Footer = () => {
+export function Component() {
   return (
-    <footer>
+    <Footer container className="bg-gray-900 text-white py-10" style={{ marginTop: '-40px'}}>
+      
       <div className='footer'>
-        <div className='logo'> 
-          <Image src={logo} width={202} height={80} alt='logo' /> 
-
-          <p>Empower your business with Citrix and NetScaler solutions 
-            through expert-led training and tailored IT support.</p>
-            <p>&nbsp;</p> 
-          
+        {/* Brand Section */}
+        <div className="flex justify-center sm:justify-between items-center space-y-4 sm:space-y-0"> 
+          <Link href='/'>
+            <Image src={logo} width={164} height={65}  alt='logo' /> 
+            <div className='logo'>  
+              <p><small>Empower your business with CitrixLab's Framework and Cloud-based 
+              solutions through expert-led training and tailored IT support.</small></p>
+            </div>
+          </Link> 
           <div className='icon-container'>
             <div>
               <a className="social-icon" href="https://x.com/SoojiDano" target="_blank" rel="noopener noreferrer">
@@ -31,43 +39,82 @@ const Footer = () => {
               </a>
             </div>
           </div>
-        </div>
-        <div className='footer-links'>
+        </div> 
+        
+        {/* Link Group */}
+        <div className="space-x-6 text-lg font-medium">
+        <h3>Latest News</h3>
+        <p><small>&nbsp;</small></p> 
+          <div class="block-21 mb-4 d-flex"> 
+            <Image src={latestnews1} width={65} height={65}  alt='image' /> 
+            <div class="text">
+                <h3 class="heading"><a href="#"><small>IT infrastructure and drive business performance</small></a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> Oct. 16, 2019</a></div>
+                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div> 
+        </div> 
+
+        {/* Link Group */}
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <div class="block-21 mb-4 d-flex"> 
           <h3>Company</h3>
-          <ul>
-            <li>About</li>
-            <li>Terms of Use</li>
-            <li>Privacy Policy</li>
-            <li>How it Works</li>
-            <li>Contact Us</li>
-          </ul>
+            <Footer.Link href="#" className="hover:text-indigo-400 transition duration-300">About</Footer.Link>
+            <Footer.Link href="#" className="hover:text-indigo-400 transition duration-300">Privacy Policy</Footer.Link>
+            <Footer.Link href="#" className="hover:text-indigo-400 transition duration-300">Licensing</Footer.Link>
+            <Footer.Link href="#" className="hover:text-indigo-400 transition duration-300">Contact</Footer.Link>
+          </div> 
         </div>
 
-        <div className='footer-links'>
-          <h3>Support</h3>
-          <ul>
-            <li>Support Carrer</li>
-            <li>24h Service</li>
-            <li>Quick Chat</li>
-          </ul>
-        </div>
+        {/* Link Group */}
+        <div className="space-x-6 text-lg font-medium">
+                    <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                        <h3>Have a Questions?</h3>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li>
+                                    <span class="icon ion-ios-pin"></span>
+                                    <span class="text">Manila 1016, PH</span>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon ion-ios-call"></span>
+                                        <span class="text">(+63) 939 5248 426</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon ion-ios-send"></span>
+                                        <span class="text">
+                                            <span class="__cf_email__">citrixlabph@gmail.com</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+        </div> 
 
-        <div className='footer-links'>
-          <h3>Contact</h3>
-          <ul>
-            <li>Whatsapp</li>
-            <li>Support 24h</li>
-          </ul>
-        </div>
       </div>
+       
+        <div className="footer-links" style={{ textAlign: 'center', height: '90px' }}>
+        {/* Divider */}
+        <Footer.Divider className="border-gray-700" /> 
+        <p>&nbsp;</p>
+          {/* Copyright */}
+          <small><Footer.Copyright 
+            href="#" 
+            by=" CitrixLab Philippines. All Rights Reserve." 
+            year={2024}
+            className="text-sm text-gray-400"
+          /></small>
+        </div>
+        
+    </Footer>
+  );
+}
 
-      <div className='copyright'>
-        <p>Copyright © 2024 CitrixLab Philippines</p>
-        <p>Design by. <span>Weird Design Studio</span></p>
-        <p>Code by. <a href="https://www.facebook.com/citrixlabph/" target="_blank" rel="noopener noreferrer" class="bold-link">Citrixlab PH</a></p>
-      </div>
-    </footer>
-  )
-} 
-
-export default Footer
+export default Component;

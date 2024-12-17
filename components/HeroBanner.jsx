@@ -1,7 +1,8 @@
 import React from 'react' 
 import {CgShoppingCart} from 'react-icons/cg' 
 import Link from 'next/link';
-import headerImg from '../src/assets/mainbg.jpg'
+import Image from 'next/image'; // Import Image from next/image
+import mainbg from '../src/assets/mainbg.jpg'
 
 const HeroBanner = () => {
  
@@ -9,9 +10,10 @@ const HeroBanner = () => {
   return (
     <header className="header">
   
-            {/* Background Layer */}
+            {/* Background Layer
             <div className="background-layer"></div>
-     
+          */}
+
           {/* Background Layer */}
           <div
             className="background-layer1"
@@ -37,19 +39,18 @@ const HeroBanner = () => {
         <div className='header-left-side'>
             <div className='header-content'> 
                 <h1>CitrixLab Philippines:</h1>
-                <p>&nbsp;Your Trusted IT Solution Provider</p> 
-                <p>&nbsp;</p> 
-                <small>
-                  At CitrixLab, we provide expert Citrix and NetScaler solutions through training, 
-                  on-demand labs, and tailored IT support to optimize your IT infrastructure and drive 
-                  business performance.
-                </small> 
+                <p>Your Trusted IT Solution Provider</p>  
+                  <div style={{width: '90%' , align: 'left'}}>
+                    <small><p>&nbsp;</p> 
+                      At CitrixLab, we provide expert Citrix and NetScaler solutions through training, 
+                      on-demand labs, and tailored IT support to optimize your IT infrastructure and drive 
+                      business performance.
+                    </small>
+                  </div> 
                 <p>&nbsp;</p> 
                 <Link href='/products'>
                      <button className='btn' type='button'><CgShoppingCart size={26} />  Learn More</button>
-                </Link> 
-                <p>&nbsp;</p> 
-                <p>&nbsp;</p> 
+                </Link>  
             </div>
 
         </div>
